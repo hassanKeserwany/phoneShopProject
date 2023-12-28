@@ -1,0 +1,29 @@
+/****** Script for SelectTopNRows command from SSMS  ******/
+SELECT TOP (1000) [Id]
+      ,[Name],[Description] ,[Price],[pictureUrl],[ProductTypeId],[ProductBrandId]FROM [PhoneShop].[dbo].[Products]
+
+
+	  INSERT INTO Products (Name, Description, Price, pictureUrl, ProductTypeId, ProductBrandId) VALUES
+('iPhone 13 Pro', 'A powerful smartphone with advanced features', 999.99, 'iphone13pro.jpg', 1, 1),
+('Samsung Galaxy S21', 'Feature-rich Android smartphone', 899.99, 'galaxys21.jpg', 1, 2),
+('Google Pixel 6', 'Innovative camera and Google Assistant integration', 799.99, 'pixel6.jpg', 1, 3),
+('OnePlus 9', 'Flagship-level performance and design', 749.99, 'oneplus9.jpg', 1, 4),
+('Xiaomi Redmi Note 10', 'Budget-friendly with good performance', 299.99, 'redminote10.jpg', 1, 5);
+
+INSERT INTO Products (Name, Description, Price, pictureUrl, ProductTypeId, ProductBrandId) VALUES
+('Huawei P40 Pro', 'Leica quad-camera system and powerful performance', 899.99, 'huaweip40pro.jpg', 1, 6),
+('Sony Xperia 1 III', 'Professional-grade camera and 4K OLED display', 1099.99, 'xperia1iii.jpg', 1, 7),
+('Motorola Edge 20', 'Sleek design and long-lasting battery', 699.99, 'motorolaedge20.jpg', 1, 8),
+('LG Velvet', 'Stylish design with dual-screen accessory support', 799.99, 'lgvelvet.jpg', 1, 9),
+('HTC Desire 21 Pro', 'Good performance at an affordable price', 449.99, 'htcdesire21pro.jpg', 1, 10);
+
+
+INSERT INTO Products (Name, Description, Price, pictureUrl, ProductTypeId, ProductBrandId) VALUES
+('iPad Pro', 'Powerful tablet with an advanced display and performance', 799.99, 'ipadpro.jpg', 2, 1),
+('Samsung Galaxy Tab S7', 'High-performance Android tablet with S Pen support', 699.99, 'galaxytabs7.jpg', 2, 2),
+('Huawei MatePad Pro', 'Sleek tablet with a stylus and powerful hardware', 899.99, 'matepadpro.jpg', 2, 6);
+
+INSERT INTO Products (Name, Description, Price, pictureUrl, ProductTypeId, ProductBrandId) VALUES
+('samsungb', 'Bluetooth earbuds for wireless listening', 99.99, 'wirelessearbuds.jpg', 4, 2),
+('Phone Case', 'Protective case for smartphones', 19.99, 'phonecase.jpg', 4, 2),
+('Portable Power Bank', 'Charger for on-the-go device charging', 39.99, 'powerbank.jpg', 4, 2);
