@@ -30,8 +30,6 @@ builder.Services.AddDbContext<StoreContext>(options =>
 //Mapper
 builder.Services.AddAutoMapper(typeof(MappingProfiles));
 
-//product repository service
-builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 //Generic repository service
 builder.Services.AddScoped(typeof(IGenericRepository<>), (typeof(GenericRepository<>)));
