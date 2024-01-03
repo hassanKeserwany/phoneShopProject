@@ -1,7 +1,45 @@
 /****** Script for SelectTopNRows command from SSMS  ******/
-SELECT TOP (1000) [Id]
-      ,[Name],[Description] ,[Price],[pictureUrl],[ProductTypeId],[ProductBrandId]FROM [PhoneShop].[dbo].[Products]
 
+
+
+/****** INSERT DATA TO ProductBrands table   ******/
+
+INSERT INTO [PhoneShop].[dbo].[ProductBrands] (Id, Name)
+VALUES
+
+(1, 'Apple'),
+(2, 'Samsung'),
+(3, 'Google'),
+(4, 'OnePlus'),
+(5, 'Xiaomi'),
+(6, 'Huawei'),
+(7, 'Sony'),
+(8, 'Motorola'),
+(9, 'LG'),
+(10, 'HTC'),
+(11, 'Nokia'),
+(12, 'ASUS');
+
+
+/****** INSERT DATA TO [ProductTypes] table   ******/
+
+INSERT INTO [PhoneShop].[dbo].[ProductTypes] (Id, Name)
+VALUES
+(1, 'Smartphone'),
+(2, 'Tablet'),
+(3, 'Smartwatch'),
+(4, 'Accessory'),
+(5, 'Laptop'),
+(6, 'Headphones'),
+(7, 'Charger'),
+(8, 'Camera'),
+(9, 'Fitness Tracker'),
+(10, 'Speaker');
+
+
+
+
+/****** INSERT DATA TO Products table   ******/
 
 	  INSERT INTO Products (Name, Description, Price, pictureUrl, ProductTypeId, ProductBrandId) VALUES
 ('iPhone 13 Pro', 'A powerful smartphone with advanced features', 999.99, 'iphone13pro.jpg', 1, 1),
@@ -24,6 +62,8 @@ INSERT INTO Products (Name, Description, Price, pictureUrl, ProductTypeId, Produ
 ('Huawei MatePad Pro', 'Sleek tablet with a stylus and powerful hardware', 899.99, 'matepadpro.jpg', 2, 6);
 
 INSERT INTO Products (Name, Description, Price, pictureUrl, ProductTypeId, ProductBrandId) VALUES
-('samsungb', 'Bluetooth earbuds for wireless listening', 99.99, 'wirelessearbuds.jpg', 4, 2),
+('samsung airbud', 'Bluetooth earbuds for wireless listening', 99.99, 'wirelessearbuds.jpg', 4, 2),
 ('Phone Case', 'Protective case for smartphones', 19.99, 'phonecase.jpg', 4, 2),
 ('Portable Power Bank', 'Charger for on-the-go device charging', 39.99, 'powerbank.jpg', 4, 2);
+
+
