@@ -35,6 +35,20 @@ builder.Services.AddAutoMapper(typeof(MappingProfiles));
 builder.Services.AddScoped(typeof(IGenericRepository<>), (typeof(GenericRepository<>)));
 
 
+
+//allow orign header method
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder =>
+    {
+        builder.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+    });
+});
+
+
+
 var app = builder.Build();
 
 
@@ -63,6 +77,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+// Enable CORS middleware
+app.UseCors();
 
 app.UseHttpsRedirection();
 app.UseRouting();

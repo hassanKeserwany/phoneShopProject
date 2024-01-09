@@ -28,7 +28,7 @@ namespace Infrastructure.Data
             }
             if(spec.IsPagingEnabled) {
 
-                query = query.Skip(spec.skip).Take(spec.Take);
+                query = query.Skip(spec.Skip).Take(spec.Take);
             
             }
 

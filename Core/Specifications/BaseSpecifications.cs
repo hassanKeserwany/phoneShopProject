@@ -36,7 +36,7 @@ namespace Core.Specifications
 
         public int Take { get; private set; }
 
-        public int skip { get; private set; }
+        public int Skip { get; private set; }
 
         public bool IsPagingEnabled { get; private set; }
 
@@ -51,7 +51,7 @@ namespace Core.Specifications
 
         protected void ApplyPaging(int skip , int take)
         {
-            skip = skip;
+            Skip = skip;
             Take = take;
             IsPagingEnabled = true;
         }
