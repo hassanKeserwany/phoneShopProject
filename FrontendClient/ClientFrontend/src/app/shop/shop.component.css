@@ -1,0 +1,9 @@
+.hovering:hover {
+  cursor: pointer;
+  transform: scale(1.05); /* Increases size by 10% when hovering */
+  /* border-bottom: 1px solid #0d6efd; change it with shadow of this color */
+  box-shadow: 0 2px 4px rgba(13, 110, 253, 0.5); /* Shadow with the color #0d6efd */
+
+  z-index: 10;
+
+}
