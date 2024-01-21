@@ -9,9 +9,12 @@ import{HttpClientModule} from '@angular/common/http';
 import { CoreModule } from './core/core.module';
 import { ShopComponent } from './shop/shop.component';
 import { ShopModule } from './shop/shop.module';
+import { HomeComponent } from './home/home.component';
+import { HomeModule } from './home/home.module';
 @NgModule({
   declarations: [
     AppComponent,
+    
     
   ],
   imports: [
@@ -20,7 +23,8 @@ import { ShopModule } from './shop/shop.module';
     BrowserAnimationsModule,
     HttpClientModule,
     CoreModule,
-    ShopModule
+    //ShopModule, .. no longer need to add it here(because of lazy loading)
+    HomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

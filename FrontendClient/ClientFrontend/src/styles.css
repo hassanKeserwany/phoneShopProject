@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+.hovering:hover {
+  cursor: pointer;
+  transform: scale(1.03); /* Increases size by 10% when hovering */
+  /* border-bottom: 1px solid #0d6efd; change it with shadow of this color */
+  box-shadow: 0 2px 0px rgba(167, 171, 196, 0.5); /* Shadow with the color #0d6efd */
+  border-radius: 5px;
+  z-index: 10;
+}
+.textStyle{
+    font-size: 16px;
+    font-weight: bold;
+    font-family:sans-serif;
+    color: rgb(140, 141, 145);
+}
+a{
+  text-decoration: none;
+}

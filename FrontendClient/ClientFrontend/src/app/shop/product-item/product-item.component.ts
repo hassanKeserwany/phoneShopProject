@@ -9,10 +9,10 @@ import { IProduct } from 'src/app/shared/models/product';
 export class ProductItemComponent implements OnInit {
 
   @Input() product!: IProduct;
-  @Input() aaa: IProduct[] = [];
-
 
   constructor () { }
   ngOnInit (): void {
   }
+
+ 
 }
