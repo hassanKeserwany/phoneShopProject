@@ -1,0 +1,6 @@
+"development": {
+              "buildTarget": "ClientProject:build:development",
+              "sslKey": "ssl/server.key",
+              "sslCert": "ssl/server.crt",
+              "ssl": true 
+            }
