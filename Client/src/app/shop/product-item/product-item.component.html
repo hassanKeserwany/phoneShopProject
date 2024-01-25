@@ -1,0 +1,22 @@
+<div class="card shadow-sm h-100 ">
+    <div class="div-size imager position-relative" style="cursor: pointer;">
+        <img class="img-fluid bg-light img-size" src="{{product.pictureUrl}}" alt="{{product.name}}">
+
+        <div class="d-flex align-items-center justify-content-center hoverOverlay">
+            <button type="button" class="btn btn-primary me-3 fa fa-shopping-cart mr-2"></button>
+            <button type="button" class="btn btn-primary" routerLink="/shop/{{product.id}}">View</button>
+
+        </div>
+    </div>
+
+    
+    <div class="card-body">
+        <a class="" routerLink="/shop/{{product.id}}">
+            <h6>{{product.name}}</h6>
+        </a>
+        <div class="my-3">
+            <span class="text-uppercase ">{{product.price|currency}}</span>
+        </div>
+
+    </div>
+</div>

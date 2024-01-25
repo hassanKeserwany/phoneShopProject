@@ -1,20 +1,26 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+import { CoreModule } from './core/core.module';
+import { HomeModule } from './home/home.module';
 
-@NgModule({
+@NgModule( {
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule,
+    CoreModule,
+    //ShopModule, .. no longer need to add it here(because of lazy loading)
+    HomeModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
-})
+  bootstrap: [ AppComponent ]
+} )
 export class AppModule { }
