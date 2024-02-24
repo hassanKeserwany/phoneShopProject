@@ -3,7 +3,7 @@
         <img class="img-fluid bg-light img-size" src="{{product.pictureUrl}}" alt="{{product.name}}">
 
         <div class="d-flex align-items-center justify-content-center hoverOverlay">
-            <button type="button" class="btn btn-primary me-3 fa fa-shopping-cart mr-2"></button>
+            <button (click)="addItemToBasket()" type="button" class="btn btn-primary me-3 fa fa-shopping-cart mr-2"></button>
             <button type="button" class="btn btn-primary" routerLink="/shop/{{product.id}}">View</button>
 
         </div>

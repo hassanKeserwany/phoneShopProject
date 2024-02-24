@@ -17,6 +17,7 @@ const routes: Routes = [
   imports: [
    // CommonModule ,// we dont need these to be available in app module, but only in shopModule
    RouterModule.forChild(routes)
-  ],exports:[RouterModule]
+  ],
+  exports:[RouterModule]
 } )
 export class ShopRoutingModule { }

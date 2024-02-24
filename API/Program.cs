@@ -1,8 +1,8 @@
 using API.Helper;
 using Core.Interfaces;
 using Infrastructure.Data;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
+using StackExchange.Redis;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,24 +15,38 @@ builder.Services.AddSwaggerGen();
 
 
 // Add Configuration to access appsettings.json
-var configuration = new ConfigurationBuilder()
+var Configuration = new ConfigurationBuilder()
     .AddJsonFile("appsettings.json")
     .Build();
-
-// Configure services
-builder.Services.AddDbContext<StoreContext>(options =>
-    {
-        var connectionString = configuration.GetConnectionString("DefaultConnection");
-        options.UseSqlServer(connectionString);
-    });
-
 
 //Mapper
 builder.Services.AddAutoMapper(typeof(MappingProfiles));
 
 
+
+
+
+
+// Configure services
+builder.Services.AddDbContext<StoreContext>(options =>
+    {
+        var connectionString = Configuration.GetConnectionString("DefaultConnection");
+        options.UseSqlServer(connectionString);
+    });
+
+//add redis
+builder.Services.AddSingleton<IConnectionMultiplexer>(c =>
+{
+    var configuration = ConfigurationOptions.Parse(Configuration.GetConnectionString("Redis"), true);
+    return ConnectionMultiplexer.Connect(configuration);
+});
+
+
 //Generic repository service
 builder.Services.AddScoped(typeof(IGenericRepository<>), (typeof(GenericRepository<>)));
+
+// Registration of IBasketRepository service
+builder.Services.AddScoped<IBasketRepository, BasketRepository>();
 
 
 

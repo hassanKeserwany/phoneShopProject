@@ -6,19 +6,25 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { CoreModule } from './core/core.module';
 import { HomeModule } from './home/home.module';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { BasketModule } from './basket/basket.module';
 
 @NgModule( {
   declarations: [
     AppComponent,
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
     CoreModule,
     //ShopModule, .. no longer need to add it here(because of lazy loading)
-    HomeModule
+    HomeModule,
+    BasketModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [ AppComponent ]

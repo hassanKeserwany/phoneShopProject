@@ -3,3 +3,5 @@ bin
 *.db
 /PhoneShopSolution.sln
 assetsfromGitHub
+
+*.rdb
