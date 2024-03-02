@@ -1,8 +1,15 @@
 using API.Helper;
 using Core.Interfaces;
 using Infrastructure.Data;
+using Infrastructure.Identity;
+using Infrastructure.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using StackExchange.Redis;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,11 +30,45 @@ var Configuration = new ConfigurationBuilder()
 builder.Services.AddAutoMapper(typeof(MappingProfiles));
 
 
+// Configure services sql for identity
+
+builder.Services.AddDbContext<AppIdentityDbContext>(options =>
+{
+    var connectionString = Configuration.GetConnectionString("IdentityConnection");
+    options.UseSqlServer(connectionString);
+});
+/////////////////////////////////////////////////////////////////////////
+///add services for jwt and usermanager and sign in 
+builder.Services.AddIdentityCore<Core.Entities.Identity.AppUser>()
+        .AddEntityFrameworkStores<AppIdentityDbContext>();
+   //   .AddDefaultTokenProviders();
+
+
+builder.Services.AddScoped<UserManager<Core.Entities.Identity.AppUser>>();
+builder.Services.AddScoped<SignInManager<Core.Entities.Identity.AppUser>>();
+
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<IUserClaimsPrincipalFactory<Core.Entities.Identity.AppUser>,
+    UserClaimsPrincipalFactory<Core.Entities.Identity.AppUser>>();
 
 
 
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Token:Key"])),
+            ValidIssuer = Configuration["Token:Issuer"],
+            ValidateIssuer = true,
+            ValidateAudience = false,
+        };
+    });
+/////////////////////////////////////////////////////////////////////////
+builder.Services.AddScoped<ITokenService,TokenService>();
 
-// Configure services
+// Configure services sql for system
 builder.Services.AddDbContext<StoreContext>(options =>
     {
         var connectionString = Configuration.GetConnectionString("DefaultConnection");
@@ -98,6 +139,7 @@ app.UseCors();
 app.UseHttpsRedirection();
 app.UseRouting();
 app.UseStaticFiles();
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
