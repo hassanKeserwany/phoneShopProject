@@ -1,30 +1,49 @@
 a {
-    text-decoration: none;
-    list-style: none;
-  }
-  .font-size-20 {
-    font-size: 20px;
-    font-weight: bold;
-  }
-  
-  .cart-no {
-    position: absolute;
-    display: inline-block;
-    background-color: red;
-    color: white;
-    padding: 0.2em 0.5em;
-    min-width: 20px;
-    min-height: 20px;
-    border-radius: 50%;
-    text-align: center;
-    top: -12px;
-    left: 30px;
-    font-weight: bold;
-  }
-  
-  a.active {
-    color: rgb(64, 123, 250);
-    box-shadow: 0 2px 0px rgba(64, 123, 250, 0.5); /* Shadow with the color #0d6efd */
-    border-radius: 5px;
-  }
-  
+  text-decoration: none;
+  list-style: none;
+}
+.font-size-20 {
+  font-size: 20px;
+  font-weight: bold;
+}
+.dropdown-item:hover {
+  background-color: rgb(222, 221, 221);
+}
+.dropdown-item:hover i {
+  color: #e95420;
+  transform: scale(1.1);
+  transition: transform 0.2s ease-in-out; /* Optional: Add a smooth transition effect */
+}
+.loginName {
+  color: #e95420;
+  font-weight: bold;
+  font-size: 18px;
+  font-family: "Courier New", Courier, monospace;
+  display: inline-block; /*add block or inline block because transition dont work with <a> */
+  transition: transform 0.2s ease-in-out;
+}
+.loginName:hover {
+  color: #d94109;
+  transform: scale(1.05);
+  /* transform: translateX(5px); */
+}
+.cart-no {
+  position: absolute;
+  display: inline-block;
+  background-color: red;
+  color: white;
+  padding: 0.2em 0.5em;
+  min-width: 20px;
+  min-height: 20px;
+  border-radius: 50%;
+  text-align: center;
+  top: -12px;
+  left: 30px;
+  font-weight: bold;
+}
+
+a.active {
+  color: rgb(64, 123, 250);
+  box-shadow: 0 2px 0px rgba(64, 123, 250, 0.5); /* Shadow with the color #0d6efd */
+  border-radius: 5px;
+}

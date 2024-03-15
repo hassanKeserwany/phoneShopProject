@@ -1,0 +1,51 @@
+<div class="registration-container">
+    <h2>Register</h2>
+    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+        <div class="form-floating mb-3">
+            <input class="form-control" type="text" id="displayName" formControlName="displayName" />
+            <label for="displayName">Display Name</label>
+
+            <span class="text-danger m-3" *ngIf="registrationForm.get('displayName')?.touched 
+                && registrationForm.get('displayName')?.value ===null ">
+                Display Name is required
+            </span>
+
+        </div>
+
+        <div class="form-floating mb-3">
+
+            <input class="form-control" type="email" id="floatingInput" formControlName="email" />
+            <label for="floatingInput">Email address</label>
+            <span class="text-danger m-3" *ngIf="EmailExist">Email already Exists ...</span>
+            <span class="text-danger m-3" style="font-size: 12px;" *ngIf="registrationForm.get('email')?.invalid
+                && registrationForm.get('email')?.touched
+                && registrationForm.get('email')?.errors">
+                Please enter a valid email address
+            </span>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input class="form-control" type="password" id="password" formControlName="password" />
+            <label for="password">Password</label>
+
+            <span class="text-danger m-3" *ngIf="registrationForm.get('password')?.touched 
+            &&registrationForm.get('password')?.value ===null  ">
+                Password is required
+            </span>
+            <div class="text-danger m-3" *ngIf="registrationForm.get('password')?.touched &&
+                registrationForm.get('password')?.invalid && registrationForm.get('password')?.errors">
+                Password must be at least 6 characters
+            </div>
+        </div>
+        <div>
+            <ul class="text-primary list-unstyled " style="font-size: 12px;">
+                <li>{{errorEmailInUse}}</li>
+                <li *ngFor="let error of apiErrors" style="margin-bottom: 5px;">
+                    {{error.description}}
+                </li>
+            </ul>
+        </div>
+
+        <button class="  btn-block" type="submit" [disabled]="registrationForm.invalid">Register</button>
+    </form>
+</div>

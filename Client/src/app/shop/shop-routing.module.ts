@@ -7,8 +7,9 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
 
   { path: '', component: ShopComponent  },
-  //{ path: 'shop', component: ShopComponent },//we dont need this,
-  //because it the root of shopModule component
+  //{ path: 'shop', component: ShopComponent },
+  //we dont need this,
+  //because it is the root of shopModule component
   { path: ':id', component: ProductDetailsComponent ,data:{breadcrumb:{alias:'productDetails'}}}
 ];
 

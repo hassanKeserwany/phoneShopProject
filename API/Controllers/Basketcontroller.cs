@@ -32,41 +32,16 @@ namespace API.Controllers
 
 
 
-        //zyadi not important  just for testing ***
-        [HttpGet("allbaskets")]
-        public async Task<IActionResult> GetAllBasket()
-        {
-            try
-            {
-                Console.WriteLine("GetAllBasket action is called."); // Add this line for debugging
-
-                var baskets = await _basketRepository.GetAllBasketsAsync();
-
-                if (baskets == null || !baskets.Any())
-                {
-                    Console.WriteLine("No baskets found."); // Add this line for debugging
-                    return NoContent(); // No baskets found
-                }
-
-                Console.WriteLine($"Number of baskets retrieved: {baskets.Count()}"); // Add this line for debugging
-                return Ok(baskets);
-            }
-            catch (Exception ex)
-            {
-                // Log the exception or handle it accordingly
-                Console.WriteLine($"Exception: {ex.Message}");
-                return StatusCode(500, "Internal Server Error");
-            }
-        }
-        //end zyadi not important  just for testing ***
-
-
-
         [HttpPost]
         public async Task<ActionResult<CustomerBasket>> UpdateBasket(CustomerBasket basket)
         {
-            //var customerBasket = _mapper.Map<CustomerBasket>(basket);
-            var updatedBasket =await _basketRepository.UpdateBasketAsync(basket);
+            //recive ===>  UpdateBasket(CustomerBasketDto basket)
+            // change mapping from CustomerBasketDto, CustomerBasket
+            //var customerBasket = _mapper.Map<CustomerBasketDto, CustomerBasket>(basket);
+
+
+            var customerBasket = _mapper.Map<CustomerBasket, CustomerBasket>(basket);
+            var updatedBasket =await _basketRepository.UpdateBasketAsync(customerBasket);
             return Ok(updatedBasket);
         }
         [HttpDelete]

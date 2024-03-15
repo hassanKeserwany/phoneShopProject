@@ -6,56 +6,52 @@ import { IProductType } from '../shared/models/productType';
 import { map } from 'rxjs/operators';
 import { ShopParams } from '../shared/models/shopParams';
 import { IProduct } from '../shared/models/product';
+import { environment } from 'src/environments/environment';
 
-@Injectable( {
-  providedIn: 'root'
-} )
+@Injectable({
+  providedIn: 'root',
+})
 export class ShopService {
+  //baseUrl = 'https://localhost:7203/api/';
+  baseUrl = environment.apiUrl;
 
-  baseUrl = 'https://localhost:7203/api/';
+  constructor(private http: HttpClient) {}
 
-  constructor ( private http: HttpClient ) { }
-
-  getProducts ( shopParams:ShopParams ) {
+  getProducts(shopParams: ShopParams) {
     let params = new HttpParams();
 
-    if ( shopParams.brandId !==0 ) {
-      params = params.append( 'brandId', shopParams.brandId.toString() );
+    if (shopParams.brandId !== 0) {
+      params = params.append('brandId', shopParams.brandId.toString());
     }
-    if ( shopParams.typeId !==0) {
-      params = params.append( 'typeId', shopParams.typeId.toString() );
+    if (shopParams.typeId !== 0) {
+      params = params.append('typeId', shopParams.typeId.toString());
     }
-    if ( shopParams.search ) {
-      params = params.append( 'search', shopParams.search.toString() );
+    if (shopParams.search) {
+      params = params.append('search', shopParams.search.toString());
     }
     params = params.append('sort', shopParams.sort);
     params = params.append('pageIndex', shopParams.pageNumber);
     params = params.append('pageSize', shopParams.pageSize);
-    
-
 
     return this.http
-      .get<IPagination>( this.baseUrl + 'Product/Products', { observe: 'response', params } )
+      .get<IPagination>(this.baseUrl + 'Product/Products', {
+        observe: 'response',
+        params,
+      })
       .pipe(
-        map( ( response ) => {
+        map((response) => {
           return response.body;
-        } )
+        })
       );
   }
-  getBrands () {
-
-    return this.http
-      .get<IProductBrand[]>( this.baseUrl + 'Product/Brands' );
+  getBrands() {
+    return this.http.get<IProductBrand[]>(this.baseUrl + 'Product/Brands');
   }
-  getTypes () {
-
-    return this.http
-      .get<IProductType[]>( this.baseUrl + 'Product/Types' );
+  getTypes() {
+    return this.http.get<IProductType[]>(this.baseUrl + 'Product/Types');
   }
 
-  getSingleProduct(id:number){
-    return this.http
-    .get<IProduct>(this.baseUrl + 'Product/'+ id);
+  getSingleProduct(id: number) {
+    return this.http.get<IProduct>(this.baseUrl + 'Product/' + id);
   }
-
 }

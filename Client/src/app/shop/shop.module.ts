@@ -7,21 +7,11 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { SharedModule } from '../shared/shared.module';
 
-
-
-@NgModule( {
-  declarations: [
-    ShopComponent,
-    ProductItemComponent,
-    ProductDetailsComponent,
-
-
-  ],
-  imports: [
-    CommonModule, PaginationModule, SharedModule, ShopRoutingModule
-  ],
+@NgModule({
+  declarations: [ShopComponent, ProductItemComponent, ProductDetailsComponent],
+  imports: [CommonModule, PaginationModule, SharedModule, ShopRoutingModule],
   exports: [
-    // ShopComponent  =>no need to export it (because of lazy loading)
-  ]
-} )
-export class ShopModule { }
+     //ShopComponent  =>no need to export it (because of lazy loading)
+  ],
+})
+export class ShopModule {}

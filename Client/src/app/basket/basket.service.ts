@@ -8,12 +8,14 @@ import {
   IBasketTotlal,
 } from '../shared/models/basket';
 import { IProduct } from '../shared/models/product';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BasketService {
-  baseUrl = 'https://localhost:7203/api/';
+  //baseUrl = 'https://localhost:7203/api/';
+  baseUrl = environment.apiUrl;
 
   private basketSource = new BehaviorSubject<IBasket | null>(null); // Initial empty basket
   basket$ = this.basketSource.asObservable();

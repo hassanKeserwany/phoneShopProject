@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using StackExchange.Redis;
 using System.Text;
 
@@ -18,7 +19,28 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
+
+//swager config
+builder.Services.AddSwaggerGen(c =>
+{
+    var securitySchema = new OpenApiSecurityScheme
+    {
+        Description = "JWT Auth Bearer Schema",
+        Name = "Authorization",
+        In = ParameterLocation.Header,
+        Type=SecuritySchemeType.Http,
+        Scheme = "bearer",
+        Reference = new OpenApiReference
+        {
+            Type = ReferenceType.SecurityScheme,
+            Id = "Bearer",
+        }
+    };
+    c.AddSecurityDefinition("Bearer", securitySchema);
+    var securityRequirment=new OpenApiSecurityRequirement{ { securitySchema, new[] { "Bearer" } } };
+    c.AddSecurityRequirement(securityRequirment);
+});
 
 
 // Add Configuration to access appsettings.json

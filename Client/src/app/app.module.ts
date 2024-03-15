@@ -9,6 +9,8 @@ import { HomeModule } from './home/home.module';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { BasketModule } from './basket/basket.module';
+import { AccountModule } from './account/account.module';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 @NgModule( {
   declarations: [
@@ -24,7 +26,9 @@ import { BasketModule } from './basket/basket.module';
     //ShopModule, .. no longer need to add it here(because of lazy loading)
     HomeModule,
     BasketModule,
-    FormsModule
+    AccountModule,
+    FormsModule,
+    BsDropdownModule.forRoot(),
   ],
   providers: [],
   bootstrap: [ AppComponent ]

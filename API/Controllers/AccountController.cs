@@ -1,5 +1,4 @@
-﻿using API.Dtos;
-using API.Dtos.identityDto;
+﻿using API.Dtos.identityDto;
 using API.Extenstions;
 using AutoMapper;
 using Core.Entities.Identity;
@@ -7,6 +6,7 @@ using Core.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel;
 using System.Security.Claims;
 
 namespace API.Controllers
@@ -40,16 +40,20 @@ namespace API.Controllers
         {
             var user = await _userManager.FindByEmailFromClaimPrinciple(HttpContext.User);
 
+            if (user == null)
+            {
+                // If user is not found, return a NotFound result or handle it appropriately.
+                return NotFound("User not found.");
+            }
+
             return new UserDto
             {
                 Email = user.Email,
                 Token = _tokenService.CreateToken(user),
                 DispalyName = user.DisplayName
-
             };
-
-
         }
+
 
         [HttpGet("checkEmailExists")] //check if email already exist
         public async Task<ActionResult<bool>> checkEmailExistsAsync([FromQuery] string email)
@@ -116,7 +120,10 @@ namespace API.Controllers
         [HttpPost("register")]
         public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
         {
-            Console.WriteLine("hello");
+            if(checkEmailExistsAsync(registerDto.Email).Result.Value)
+            {
+                return BadRequest("Email address is in use");
+            }
 
             var user = new AppUser
             {
